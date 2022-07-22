@@ -6,7 +6,8 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-const fileUpload = require('express-fileupload')
+const fileUpload = require('express-fileupload');
+const { apikeys } = require('googleapis/build/src/apis/apikeys');
 require('./config/database');
 
 
@@ -24,9 +25,10 @@ app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'build')));
 
 //api from 
-app.use('/', (req, res, next) => {
-    res.json({ msg: 'hello ya' })
-})
+
+
+// Put API routes here, before the "catch all" route
+app.use('/user', require('./routes/api/users'))
 
 
 
