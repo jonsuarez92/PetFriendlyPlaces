@@ -1,9 +1,12 @@
+require('dotenv').config();
 const express = require('express');
+const mogoose = require('mongoose')
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cors = require('cors');
-require('dotenv').config();
+const cookieParser = require('cookie-parser');
+const fileUpload = require('express-fileupload')
 require('./config/database');
 
 
@@ -13,12 +16,18 @@ app.use(cors());
 
 app.use(logger('dev'));
 app.use(express.json());
+app.use(cookieParser())
+app.use(fileUpload({
+    useTempFiles: true
+}))
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'build')));
 
-
-
 //api from 
+app.use('/', (req, res, next) => {
+    res.json({ msg: 'hello ya' })
+})
+
 
 
 // The following "catch all" route (note the *) is necessary

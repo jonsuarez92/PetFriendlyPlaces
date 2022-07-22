@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from 'react';
-import Area from '../Area/Area';
+import Home from '../Home/Home';
 import AuthPage from '../AuthPage/AuthPage';
 import { Routes, Route } from 'react-router-dom'
 function App() {
@@ -11,7 +11,7 @@ function App() {
         user ?
           <>
             <Routes>
-              <Route path='/Area' element={<Area />} />
+              <Route path='/Home' element={<Home />} />
             </Routes>
           </> :
           <AuthPage />
